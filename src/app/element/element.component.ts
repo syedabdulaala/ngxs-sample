@@ -1,8 +1,9 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Element } from '../app.interface';
-import { Store } from '@ngxs/store';
+import { Store, Selector, Select } from '@ngxs/store';
 import { UpdateElement } from '../app.action';
+import { AppState } from '../app.state';
 
 @Component({
   selector: 'app-element',
@@ -11,8 +12,8 @@ import { UpdateElement } from '../app.action';
 })
 export class ElementComponent implements OnInit {
 
-  @Input() element$: Observable<Element>;
-  @Input() element: Element;
+  @Select(AppState.element)
+  element$: Observable<Element>;
 
   constructor(private store: Store) { }
 

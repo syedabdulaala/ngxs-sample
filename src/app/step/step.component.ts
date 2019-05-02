@@ -1,6 +1,9 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Step } from '../app.interface';
+import { Store, Select } from '@ngxs/store';
+import { UpdateStep } from '../app.action';
+import { AppState } from '../app.state';
 
 @Component({
   selector: 'app-step',
@@ -9,11 +12,15 @@ import { Step } from '../app.interface';
 })
 export class StepComponent implements OnInit {
 
-  @Input() step$: Observable<Step>;
-  @Input() step: Step;
+  @Select(AppState.step)
+  step$: Observable<Step>;
 
-  constructor() { }
+  constructor(private store: Store) { }
 
   ngOnInit() {
+  }
+
+  onUpdate() {
+    this.store.dispatch(new UpdateStep());
   }
 }

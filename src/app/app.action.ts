@@ -10,6 +10,10 @@ export class UpdateSection {
     static readonly type = '[App] UpdateSection';
 }
 
+export class UpdateStep {
+    static readonly type = '[App] UpdateStep';
+}
+
 export class UpdateElement {
     static readonly type = '[App] UpdateElement';
 }
