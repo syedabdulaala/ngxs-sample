@@ -1,5 +1,5 @@
 <div class="margin-4">
         {{ (procedure$ | async).text }}
         <button (click)="onUpdate()">Update Procedure</button>
-        <app-section></app-section>
+        <app-section [section]="(procedure$ | async).section"></app-section>
 </div>

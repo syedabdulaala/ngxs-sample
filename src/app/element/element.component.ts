@@ -12,8 +12,7 @@ import { AppState } from '../app.state';
 })
 export class ElementComponent implements OnInit {
 
-  @Select(AppState.element)
-  element$: Observable<Element>;
+  @Input() element: Element;
 
   constructor(private store: Store) { }
 

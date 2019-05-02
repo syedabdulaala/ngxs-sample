@@ -39,7 +39,7 @@ export class AppState {
                     text: 'This is step',
                     element: {
                         id: 1,
-                        text: 'This is section'
+                        text: 'This is element'
                     }
                 }
             }

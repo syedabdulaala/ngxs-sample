@@ -12,8 +12,7 @@ import { AppState } from '../app.state';
 })
 export class StepComponent implements OnInit {
 
-  @Select(AppState.step)
-  step$: Observable<Step>;
+  @Input() step: Step;
 
   constructor(private store: Store) { }
 
