@@ -1,63 +1,70 @@
 import { State, Action, StateContext, Selector } from '@ngxs/store';
 import { GetProcedure, UpdateElement, UpdateSection, UpdateStep, UpdateProcedure } from './app.action';
-import { Procedure } from './app.interface';
+import { Procedure, NormalizedProcedure } from './app.interface';
 
-@State<Procedure>({
+@State<NormalizedProcedure>({
     name: 'appState'
 })
 export class AppState {
     @Selector()
-    static procedure(state: Procedure) {
-        return state;
+    static procedure(state: NormalizedProcedure) {
+        return state.procedure;
     }
 
     @Selector()
-    static section(state: Procedure) {
+    static section(state: NormalizedProcedure) {
         return state.section;
     }
 
     @Selector()
-    static step(state: Procedure) {
-        return state.section.step;
+    static step(state: NormalizedProcedure) {
+        return state.step;
     }
 
     @Selector()
-    static element(state: Procedure) {
-        return state.section.step.element;
+    static element(state: NormalizedProcedure) {
+        return state.element;
     }
 
     @Action(GetProcedure)
-    getProcedure(ctx: StateContext<Procedure>) {
+    getProcedure(ctx: StateContext<NormalizedProcedure>) {
         ctx.setState({
-            id: 1,
-            text: 'This is procedure',
+            procedure: {
+                id: 1,
+                text: 'This is procedure'
+            },
             section: {
                 id: 1,
-                text: 'This is section',
-                step: {
-                    id: 1,
-                    text: 'This is step',
-                    element: {
-                        id: 1,
-                        text: 'This is element'
-                    }
-                }
+                procedureId: 1,
+                text: 'This is section'
+            },
+            step: {
+                id: 1,
+                sectionId: 1,
+                text: 'This is step'
+            },
+            element: {
+                id: 1,
+                stepId: 1,
+                text: 'This is procedure'
             }
         });
     }
 
 
     @Action(UpdateProcedure)
-    updateProcedure(ctx: StateContext<Procedure>) {
+    updateProcedure(ctx: StateContext<NormalizedProcedure>) {
         const state = ctx.getState();
         ctx.patchState({
-            ...state,
-            text: 'This is changed procedure'
+            procedure: {
+                ...state.procedure,
+                text: 'This is changed procedure'
+            }
         });
     }
 
     @Action(UpdateSection)
-    updateSection(ctx: StateContext<Procedure>) {
+    updateSection(ctx: StateContext<NormalizedProcedure>) {
         const state = ctx.getState();
         ctx.patchState({
             section: {
@@ -68,34 +75,23 @@ export class AppState {
     }
 
     @Action(UpdateStep)
-    updateStep(ctx: StateContext<Procedure>) {
+    updateStep(ctx: StateContext<NormalizedProcedure>) {
         const state = ctx.getState();
         ctx.patchState({
-            ...state,
-            section: {
-                ...state.section,
-                step: {
-                    ...state.section.step,
-                    text: 'This is changed step'
-                }
+            step: {
+                ...state.step,
+                text: 'This is changed step'
             }
         });
     }
 
     @Action(UpdateElement)
-    updateElement(ctx: StateContext<Procedure>) {
+    updateElement(ctx: StateContext<NormalizedProcedure>) {
         const state = ctx.getState();
         ctx.patchState({
-            ...state,
-            section: {
-                ...state.section,
-                step: {
-                    ...state.section.step,
-                    element: {
-                        ...state.section.step.element,
-                        text: 'This is changed element'
-                    }
-                }
+            element: {
+                ...state.element,
+                text: 'This is changed element'
             }
         });
     }

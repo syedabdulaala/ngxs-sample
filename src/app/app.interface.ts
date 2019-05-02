@@ -1,22 +1,29 @@
 export interface Procedure {
     id: number;
     text: string;
-    section: Section;
 }
 
 export interface Section {
     id: number;
+    procedureId: number;
     text: string;
-    step: Step;
 }
 
 export interface Step {
     id: number;
+    sectionId: number;
     text: string;
-    element: Element;
 }
 
 export interface Element {
     id: number;
+    stepId: number;
     text: string;
+}
+
+export interface NormalizedProcedure {
+    procedure: Procedure;
+    section: Section;
+    step: Step;
+    element: Element;
 }
