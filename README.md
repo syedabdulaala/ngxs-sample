@@ -1,3 +1,9 @@
+# Branches
+
+1. `test-01`: Deep state scheme with input propagation to child components
+2. `test-02`: Deep state scheme with NXGS selector observable
+3. `test-03`: Normalized state schema with NGXS selector observable
+
 # NgxsObservableSample
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.3.8.
