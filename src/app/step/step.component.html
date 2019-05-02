@@ -1,6 +1,6 @@
 <br>
-<!-- {{ (step$ | async).text }}
-&nbsp;&nbsp;&nbsp;<app-element [element$]="(step$ | async).element"></app-element> -->
-
-{{ step.text }}
-&nbsp;&nbsp;&nbsp;<app-element [element]="step.element"></app-element>
+<div class="margin-4">
+    {{ (step$ | async).text }}
+    <button (click)="onUpdate()">Update Step</button>
+    <app-element></app-element>
+</div>

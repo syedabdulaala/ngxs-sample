@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { Store } from '@ngxs/store';
+import { Store, Select } from '@ngxs/store';
 import { AppState } from '../app.state';
 import { Procedure } from '../app.interface';
 import { Observable } from 'rxjs';
-import { GetProcedure } from '../app.action';
+import { GetProcedure, UpdateProcedure } from '../app.action';
 
 @Component({
   selector: 'app-procedure',
@@ -14,12 +14,15 @@ export class ProcedureComponent implements OnInit {
 
   constructor(private store: Store) { }
 
+  @Select(AppState.procedure)
   procedure$: Observable<Procedure>;
 
   ngOnInit() {
-    this.procedure$ = this.store.select(AppState.model);
-    this.procedure$.subscribe((procedure) => console.log('Procedure Updated', procedure));
     this.store.dispatch(new GetProcedure());
+  }
+
+  onUpdate() {
+    this.store.dispatch(new UpdateProcedure());
   }
 
 }

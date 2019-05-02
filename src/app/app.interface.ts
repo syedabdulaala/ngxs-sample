@@ -13,7 +13,7 @@ export interface Section {
 export interface Step {
     id: number;
     text: string;
-    element: Element
+    element: Element;
 }
 
 export interface Element {
