@@ -8,6 +8,7 @@ export class UpdateProcedure {
 
 export class UpdateSection {
     static readonly type = '[App] UpdateSection';
+    constructor(public index: number) { }
 }
 
 export class UpdateStep {

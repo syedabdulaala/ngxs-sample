@@ -20,8 +20,9 @@ export class SectionComponent implements OnInit {
   ngOnInit() {
   }
 
-  onUpdate() {
-    this.store.dispatch(new UpdateSection());
+  onUpdate(index: number) {
+    this.section$.subscribe((section) => console.log('Section', section));
+    this.store.dispatch(new UpdateSection(index));
   }
 
 }

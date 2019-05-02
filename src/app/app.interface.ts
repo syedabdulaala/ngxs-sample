@@ -23,7 +23,7 @@ export interface Element {
 
 export interface NormalizedProcedure {
     procedure: Procedure;
-    section: Section;
+    section: Section[];
     step: Step;
     element: Element;
 }

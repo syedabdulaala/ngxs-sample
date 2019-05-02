@@ -1,6 +1,7 @@
-import { State, Action, StateContext, Selector } from '@ngxs/store';
+import { State, Action, StateContext, Selector, UpdateState } from '@ngxs/store';
+import { updateItem, patch } from '@ngxs/store/operators';
 import { GetProcedure, UpdateElement, UpdateSection, UpdateStep, UpdateProcedure } from './app.action';
-import { Procedure, NormalizedProcedure } from './app.interface';
+import { NormalizedProcedure, Section } from './app.interface';
 
 @State<NormalizedProcedure>({
     name: 'appState'
@@ -33,11 +34,23 @@ export class AppState {
                 id: 1,
                 text: 'This is procedure'
             },
-            section: {
-                id: 1,
-                procedureId: 1,
-                text: 'This is section'
-            },
+            section: [
+                {
+                    id: 1,
+                    procedureId: 1,
+                    text: 'This is section 1'
+                },
+                {
+                    id: 2,
+                    procedureId: 1,
+                    text: 'This is section 2'
+                },
+                {
+                    id: 3,
+                    procedureId: 1,
+                    text: 'This is section 3'
+                }
+            ],
             step: {
                 id: 1,
                 sectionId: 1,
@@ -64,14 +77,13 @@ export class AppState {
     }
 
     @Action(UpdateSection)
-    updateSection(ctx: StateContext<NormalizedProcedure>) {
+    updateSection(ctx: StateContext<NormalizedProcedure>, { index }: UpdateSection) {
         const state = ctx.getState();
-        ctx.patchState({
-            section: {
-                ...state.section,
-                text: 'This is changed section'
-            }
-        });
+        ctx.setState(
+            patch({
+                section: updateItem<Section>(index, patch({ text: `This is changed section ${index + 1}` }))
+            })
+        );
     }
 
     @Action(UpdateStep)

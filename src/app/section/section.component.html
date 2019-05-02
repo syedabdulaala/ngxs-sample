@@ -1,5 +1,7 @@
 <div class="margin-4">
-    {{ (section$ | async).text }}
-    <button (click)="onUpdate()">Update Section</button>
-    <app-step></app-step>
+    <div *ngFor="let section of section$ | async; let i = index">
+        {{ section.text }}
+        <button (click)="onUpdate(i)">Update Section</button>
+        <app-step></app-step>
+    </div>
 </div>
