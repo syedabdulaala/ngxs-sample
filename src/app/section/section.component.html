@@ -1,7 +1,5 @@
-<br>
-<!-- {{ (section$ | async).text }}
-&nbsp;&nbsp;&nbsp;&nbsp;<app-step [step$]="(section$ | async).step"></app-step> -->
-
-{{ section.text }}
-&nbsp;&nbsp;&nbsp;&nbsp;<app-step [step]="section.step"></app-step>
-<button (click)="onUpdate()">Update Section</button>
+<div class="margin-4">
+    {{ (section$ | async).text }}
+    <button (click)="onUpdate()">Update Section</button>
+    <app-step></app-step>
+</div>

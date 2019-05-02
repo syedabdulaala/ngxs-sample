@@ -1,1 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
+.margin-4 {
+    margin-left: 10px;
+    border: 1px solid;
+    padding: 10px;
+}
